@@ -7,9 +7,11 @@ type Props = {
   title: string
   rating: number
   desc: string
+  link?: string
 }
 
-export const Card = ({ image, title, rating, desc }: Props) => {
+export const Card = ({ image, title, rating, desc, link }: Props) => {
+  const LinkAdress = link
   return (
     <CardContainer>
       <TagContainer>
@@ -25,7 +27,7 @@ export const Card = ({ image, title, rating, desc }: Props) => {
           </div>
         </CardTitle>
         <CardDesc>{desc}</CardDesc>
-        <Tag title="Learn More" />
+        <Tag link={LinkAdress} title="Learn More" />
       </CardDiv>
     </CardContainer>
   )

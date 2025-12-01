@@ -13,37 +13,43 @@ export const Body = () => {
             image={spaghetti}
             title="Italian Spaghetti"
             rating={4.8}
-            desc="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!"
+            desc="La Dolce Vita Trattoria brings authentic Italian cuisine to you! Enjoy homemade pasta, delicious pizzas, and incredible risottos, all in the comfort of your home. Fast delivery, beautifully packaged dishes, and unforgettable flavor. Order now!"
+            link='italian'
           />
           <Card
             image={sushi}
             title="Japanese Sushi"
             rating={4.7}
-            desc="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!"
+            desc="Order the best of Japanese cuisine from the comfort of your home! Fresh sushi, delicious sashimi, and irresistible hot dishes. Fast delivery, careful packaging, and guaranteed quality. Experience Japan without leaving home with our delivery service!"
+            link="japanese"
           />
           <Card
             image={spaghetti}
             title="Italian Spaghetti"
             rating={4.8}
-            desc="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!"
+            desc="La Dolce Vita Trattoria brings authentic Italian cuisine to you! Enjoy homemade pasta, delicious pizzas, and incredible risottos, all in the comfort of your home. Fast delivery, beautifully packaged dishes, and unforgettable flavor. Order now!"
+            link="italian"          
           />
           <Card
             image={sushi}
             title="Japanese Sushi"
             rating={4.7}
-            desc="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!"
+            desc="Order the best of Japanese cuisine from the comfort of your home! Fresh sushi, delicious sashimi, and irresistible hot dishes. Fast delivery, careful packaging, and guaranteed quality. Experience Japan without leaving home with our delivery service!"
+            link="japanese"
           />
           <Card
             image={spaghetti}
             title="Italian Spaghetti"
             rating={4.8}
-            desc="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!"
+            desc="La Dolce Vita Trattoria brings authentic Italian cuisine to you! Enjoy homemade pasta, delicious pizzas, and incredible risottos, all in the comfort of your home. Fast delivery, beautifully packaged dishes, and unforgettable flavor. Order now!"
+            link="italian"          
           />
           <Card
             image={sushi}
             title="Japanese Sushi"
             rating={4.7}
-            desc="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!"
+            desc="Order the best of Japanese cuisine from the comfort of your home! Fresh sushi, delicious sashimi, and irresistible hot dishes. Fast delivery, careful packaging, and guaranteed quality. Experience Japan without leaving home with our delivery service!"
+            link="japanese"
           />
         </HomeBodyContainer>
       </div>

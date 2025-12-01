@@ -4,8 +4,8 @@ export const RestaurantBanner = () => {
     return (
         <Banner>
             <RestaurantDescDiv>
-                <RestaurantDesc weight={100}>Italiana</RestaurantDesc>
-                <RestaurantDesc weight={900}>La Dolce Vita Trattoria</RestaurantDesc>
+                <RestaurantDesc weight={100}>Japanese</RestaurantDesc>
+                <RestaurantDesc weight={900}>Japanese Sushi</RestaurantDesc>
             </RestaurantDescDiv>
         </Banner>
     )

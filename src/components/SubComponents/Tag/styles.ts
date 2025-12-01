@@ -8,4 +8,10 @@ export const TagItem = styled.div`
   font-weight: bold;
   padding: 6px 4px;
   display: inline;
+
+  a {
+    text-decoration: none;
+    border: none;
+    color: inherit;
+  }
 `

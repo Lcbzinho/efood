@@ -1,13 +1,17 @@
+import { Link } from 'react-router'
 import { TagItem } from './styles'
 
 type Props = {
   title: string
+  link?: string
 }
-export const Tag = ({ title }: Props) => {
+export const Tag = ({ title, link }: Props) => {
   return (
     <>
       <div>
-        <TagItem>{title}</TagItem>
+        <TagItem>
+          <Link to={`/${link}`}>{title}</Link>
+        </TagItem>
       </div>
     </>
   )
