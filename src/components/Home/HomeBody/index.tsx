@@ -1,56 +1,63 @@
 import { Card } from '../../SubComponents/Card'
-import { HomeBodyContainer, BodyContainer } from './styles'
+import { HomeBodyContainer, BodyContainer, Loading } from './styles'
 
 import spaghetti from '../../../assets/images/Restaurants/Spaghetti.png'
 import sushi from '../../../assets/images/Restaurants/sushi.png'
+import { useEffect, useState } from 'react'
+
+type RestaurantType = {
+  id: number;
+  titulo: string;
+  descricao: string;
+  tipo: string;
+  capa: string;
+  avaliacao: number;
+  cardapio: {
+    id: number;
+    nome: string;
+    descricao: string;
+    foto: string;
+    preco: number;
+    porcao: string;
+  }[];
+};
+
 
 export const Body = () => {
+  const [restaurants, setRestaurants] = useState<RestaurantType[]>([]);
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    async function load() {
+        const answer = await fetch("https://api-ebac.vercel.app/api/efood/restaurantes");
+        const date = await answer.json()
+        setCarregando(false)
+        setRestaurants(date)
+    };
+
+    load()
+  },[])
+
   return (
     <BodyContainer>
       <div className="container">
+        {
+          carregando ? <Loading>
+          {<h1>Loading...</h1>}
+        </Loading> : ''
+        }
         <HomeBodyContainer>
-          <Card
-            image={spaghetti}
-            title="Italian Spaghetti"
-            rating={4.8}
-            desc="La Dolce Vita Trattoria brings authentic Italian cuisine to you! Enjoy homemade pasta, delicious pizzas, and incredible risottos, all in the comfort of your home. Fast delivery, beautifully packaged dishes, and unforgettable flavor. Order now!"
-            link='restaurant/1'
-          />
-          <Card
-            image={sushi}
-            title="Japanese Sushi"
-            rating={4.7}
-            desc="Order the best of Japanese cuisine from the comfort of your home! Fresh sushi, delicious sashimi, and irresistible hot dishes. Fast delivery, careful packaging, and guaranteed quality. Experience Japan without leaving home with our delivery service!"
-            link="restaurant/1"
-          />
-          <Card
-            image={spaghetti}
-            title="Italian Spaghetti"
-            rating={4.8}
-            desc="La Dolce Vita Trattoria brings authentic Italian cuisine to you! Enjoy homemade pasta, delicious pizzas, and incredible risottos, all in the comfort of your home. Fast delivery, beautifully packaged dishes, and unforgettable flavor. Order now!"
-            link="restaurant/1"          
-          />
-          <Card
-            image={sushi}
-            title="Japanese Sushi"
-            rating={4.7}
-            desc="Order the best of Japanese cuisine from the comfort of your home! Fresh sushi, delicious sashimi, and irresistible hot dishes. Fast delivery, careful packaging, and guaranteed quality. Experience Japan without leaving home with our delivery service!"
-            link="restaurant/1"
-          />
-          <Card
-            image={spaghetti}
-            title="Italian Spaghetti"
-            rating={4.8}
-            desc="La Dolce Vita Trattoria brings authentic Italian cuisine to you! Enjoy homemade pasta, delicious pizzas, and incredible risottos, all in the comfort of your home. Fast delivery, beautifully packaged dishes, and unforgettable flavor. Order now!"
-            link="restaurant/1"          
-          />
-          <Card
-            image={sushi}
-            title="Japanese Sushi"
-            rating={4.7}
-            desc="Order the best of Japanese cuisine from the comfort of your home! Fresh sushi, delicious sashimi, and irresistible hot dishes. Fast delivery, careful packaging, and guaranteed quality. Experience Japan without leaving home with our delivery service!"
-            link="restaurant/1"
-          />
+          {restaurants.map((RestaurantItem) => {
+            return (
+              <Card
+              image={RestaurantItem.capa}
+              title={RestaurantItem.titulo}
+              rating={RestaurantItem.avaliacao}
+              desc={RestaurantItem.descricao}
+              link={`/restaurant/${RestaurantItem.id}`}
+            />
+            )
+          })}
         </HomeBodyContainer>
       </div>
     </BodyContainer>

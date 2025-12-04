@@ -4,12 +4,16 @@ import { Colors } from '../../../styles'
 export const CardContainer = styled.div`
   position: relative;
   border: 1px solid ${Colors.TitleColor};
-  padding-bottom: 8px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 export const CardImage = styled.img`
   width: 100%;
   height: 224px;
+  object-fit: cover;
 `
 export const TagContainer = styled.div`
   position: absolute;
@@ -23,6 +27,8 @@ export const CardDiv = styled.div`
   color: ${Colors.TitleColor};
   background-color: #fff;
   padding: 8px;
+  height: 100%;
+  padding-bottom: 16px;
 `
 
 export const CardTitle = styled.div`
