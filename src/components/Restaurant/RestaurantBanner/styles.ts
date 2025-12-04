@@ -1,12 +1,15 @@
 import styled from "styled-components";
-import Background from "../../../assets/images/Restaurants/Fundo.png"
 import { Colors } from "../../../styles";
 
 type Props = {
     weight: number
 }
 
-export const Banner = styled.div`
+type BackgroundProps = {
+    Background: string
+}
+
+export const Banner = styled.div<BackgroundProps>`
     background-image: url(${Background});
     width: 100%;
     height: 280px;
