@@ -23,12 +23,19 @@ export const TagContainer = styled.div`
 
 export const CardDiv = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   color: ${Colors.TitleColor};
   background-color: #fff;
   padding: 8px;
   height: 100%;
   padding-bottom: 16px;
+
+  .TagItem {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+  }
 `
 
 export const CardTitle = styled.div`
@@ -49,5 +56,5 @@ export const CardDesc = styled.div`
   font-weight: 400;
   line-height: 22px;
   margin-top: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 `

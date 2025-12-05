@@ -1,12 +1,16 @@
-import { Banner, RestaurantDesc, RestaurantDescDiv } from "./styles"
+import { Banner, RestaurantDesc, RestaurantDescDiv } from './styles'
 
-export const RestaurantBanner = () => {
-    return (
-        <Banner>
-            <RestaurantDescDiv>
-                <RestaurantDesc weight={100}>Italiana</RestaurantDesc>
-                <RestaurantDesc weight={900}>La Dolce Vita Trattoria</RestaurantDesc>
-            </RestaurantDescDiv>
-        </Banner>
-    )
+type Props = {
+  img: string
+}
+
+export const RestaurantBanner = ({ img }: Props) => {
+  return (
+    <Banner Background={img}>
+      <RestaurantDescDiv>
+        <RestaurantDesc weight={100}>Italiana</RestaurantDesc>
+        <RestaurantDesc weight={900}>La Dolce Vita Trattoria</RestaurantDesc>
+      </RestaurantDescDiv>
+    </Banner>
+  )
 }

@@ -25,16 +25,16 @@ type RestaurantType = {
 }
 
 export const Restaurant = () => {
-  const {id} = useParams()
+  const { id } = useParams()
   const [Restaurant, setRestaurant] = useState<RestaurantType | null>(null)
   const [Carregando, setCarregando] = useState(true)
 
   useEffect(() => {
     async function load() {
-      const request = await fetch("https://api-ebac.vercel.app/api/efood/restaurantes/");
+      const request = await fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
       const data = await request.json()
 
-      const RightRestaurant = data.find((item: any) => item.id === Number(id))
+      const RightRestaurant = data.find((item: RestaurantType) => item.id === Number(id))
 
       setRestaurant(RightRestaurant || null)
       setCarregando(false)
@@ -42,23 +42,25 @@ export const Restaurant = () => {
 
     load()
   }, [id])
-  if (Carregando) return (
-    <ErrorDiv>
-      <span>Loading...</span>
-    </ErrorDiv>
-  )
-  if (!Restaurant) return (
-    <ErrorDiv>
-      <h1>Restaurant não encontado - Erro 404</h1>
-      <img src={Erro} alt="Erro 404, 404, error, error 404" />
-    </ErrorDiv>
-)
+  if (Carregando)
+    return (
+      <ErrorDiv>
+        <span>Loading...</span>
+      </ErrorDiv>
+    )
+  if (!Restaurant)
+    return (
+      <ErrorDiv>
+        <h1>Restaurant não encontado - Erro 404</h1>
+        <img src={Erro} alt="Erro 404, 404, error, error 404" />
+      </ErrorDiv>
+    )
 
   return (
     <>
       <RestaurantHeader itens={0} />
-      <RestaurantBanner />
-      <RestaurantBody />
+      <RestaurantBanner img={Restaurant.capa} />
+      <RestaurantBody Cardapio={Restaurant.cardapio} />
       <Footer />
     </>
   )

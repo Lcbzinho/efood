@@ -1,17 +1,30 @@
-import { RestaurantCard } from "../RestaurantCard"
-import { RestaurantBodyContainer, RestaurantContainer } from "./styles"
+import { RestaurantCard } from '../RestaurantCard'
+import { RestaurantBodyContainer, RestaurantContainer } from './styles'
 
-export const RestaurantBody = () => {
-    return (
-        <RestaurantBodyContainer>
-            <RestaurantContainer>
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-            </RestaurantContainer>
-        </RestaurantBodyContainer>
-    )
+type Props = {
+  Cardapio: {
+    id: number
+    nome: string
+    descricao: string
+    foto: string
+    preco: number
+    porcao: string
+  }[]
+}
+
+export const RestaurantBody = ({ Cardapio }: Props) => {
+  return (
+    <RestaurantBodyContainer>
+      <RestaurantContainer>
+        {Cardapio.map((item) => (
+          <RestaurantCard
+            key={item.id}
+            CardImg={item.foto}
+            CardDesc={item.descricao}
+            CardTitle={item.nome}
+          />
+        ))}
+      </RestaurantContainer>
+    </RestaurantBodyContainer>
+  )
 }

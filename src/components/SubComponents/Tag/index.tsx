@@ -8,7 +8,7 @@ type Props = {
 export const Tag = ({ title, link }: Props) => {
   return (
     <>
-      <div>
+      <div className="TagItem">
         <TagItem>
           <Link to={`/${link}`}>{title}</Link>
         </TagItem>
