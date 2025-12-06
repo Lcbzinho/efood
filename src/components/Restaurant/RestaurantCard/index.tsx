@@ -1,3 +1,4 @@
+
 import {
   RestaurantCardAddButton,
   RestaurantCardDesc,
@@ -15,6 +16,7 @@ type Props = {
 }
 
 export const RestaurantCard = ({ CardDesc, CardImg, CardTitle, Clicked, id }: Props) => {
+
   return (
     <RestaurantCardDiv>
       <div>
