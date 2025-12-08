@@ -21,7 +21,7 @@ export const RestaurantHeader = () => {
       {clicked ? (
         <CartBody CloseFunction={HandleClose}>
           {items.map((item) => (
-            <CartItems img={item.foto} price={item.preco} title={item.nome}/>
+            <CartItems item={item} img={item.foto} price={item.preco} title={item.nome}/>
           ))}
         </CartBody>
       ): null}

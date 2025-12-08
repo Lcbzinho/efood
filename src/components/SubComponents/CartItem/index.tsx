@@ -1,13 +1,24 @@
 import { CartItem, CartItemContainer, CartItemImage, CartItemLogo, CartItemPrice, CartItemTitle } from "./styles"
 import Logo from '../../../assets/images/Icons/lixeira-de-reciclagem 1.png'
+import { useDispatch } from "react-redux"
+import { RemoveItem } from "../../../store/slices/CartSlice"
 
 type Props = {
     img: string
     title: string
     price: number
+    item: any
+
 }
 
-export const CartItems = ({img, title, price}: Props) => {
+export const CartItems = ({img, title, price, item}: Props) => {
+    const Dispatch = useDispatch()
+
+    //Remove item
+    const Remove = (Item: any) => {
+        Dispatch(RemoveItem(Item))
+    }
+
     return (
     <CartItem>
         <CartItemContainer>
@@ -15,7 +26,7 @@ export const CartItems = ({img, title, price}: Props) => {
             <div>
                 <CartItemTitle>{title}</CartItemTitle>
                 <CartItemPrice>R$ {price}</CartItemPrice>
-                <CartItemLogo src={Logo} />
+                <CartItemLogo src={Logo} onClick={() => Remove(item)} />
             </div>
         </CartItemContainer>
     </CartItem>

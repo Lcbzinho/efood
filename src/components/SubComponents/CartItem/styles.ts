@@ -41,4 +41,5 @@ export const CartItemLogo = styled.img`
     position: absolute;
     bottom: 0px;
     right: 0px;
+    cursor: pointer;
 `

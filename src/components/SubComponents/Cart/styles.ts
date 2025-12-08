@@ -22,6 +22,7 @@ export const CartCon = styled.div`
     height: 100%;
     background-color: ${Colors.TitleColor};
     color: ${Colors.BackgroundColor};
+    overflow-y: scroll; 
 
     & > div {
         margin-top: 40px;

@@ -18,8 +18,11 @@ const cartSlice = createSlice({
     addItem: (state, action: PayloadAction<Prato>) => {
       state.push(action.payload)
     },
+    RemoveItem: (state, action: PayloadAction<Prato>) => {
+      return state.filter((item) => item.nome !== action.payload.nome)
+    }
   },
 })
 
-export const { addItem } = cartSlice.actions
+export const { addItem, RemoveItem } = cartSlice.actions
 export default cartSlice.reducer
