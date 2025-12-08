@@ -30,7 +30,7 @@ export const ModalItem = styled.div`
   display: flex;
   align-items: center;
 
-  div {
+  & > div:last-child {
     height: 100%;
     display: flex;
     flex-direction: column;

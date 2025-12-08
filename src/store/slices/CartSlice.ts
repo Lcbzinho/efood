@@ -11,15 +11,14 @@ type Prato = {
 
 const initialState: Prato[] = []
 
-
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<Prato>) => {
       state.push(action.payload)
-    }
-  }
+    },
+  },
 })
 
 export const { addItem } = cartSlice.actions

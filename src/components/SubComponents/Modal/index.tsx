@@ -8,9 +8,12 @@ import {
   ModalTitle,
 } from './styles'
 import Close from '../../../assets/images/Icons/close.png'
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState } from '../../../store/indext'
+import { addItem } from '../../../store/slices/CartSlice'
 
 type Props = {
-  cardapio: {
+  prato: {
     id: number
     nome: string
     descricao: string
@@ -21,23 +24,33 @@ type Props = {
   Clicked: (data: boolean) => void
 }
 
-export const Modal = ({cardapio, Clicked}: Props) => {
+export const Modal = ({ prato, Clicked }: Props) => {
+  const Dispatch = useDispatch()
+  const items = useSelector((state: RootState) => state.cart)
+
+  const AddItem = (prato: Props['prato']) => {
+    const Exist = items.some((item) => item.id === prato.id)
+
+    if (!Exist) {
+      Dispatch(addItem(prato))
+      console.log('EUREKA')
+    }
+  }
+
   return (
     <>
       <ModalContainer>
         <div>
           <ModalItem>
             <ModalCloseButton onClick={() => Clicked(false)} src={Close} />
-            <ModalImage src={cardapio.foto} />
+            <ModalImage src={prato.foto} />
             <div>
-              <ModalTitle>{cardapio.nome}</ModalTitle>
-              <ModalDesc className="principalDesc">
-                {cardapio.descricao}
-              </ModalDesc>
+              <ModalTitle>{prato.nome}</ModalTitle>
+              <ModalDesc className="principalDesc">{prato.descricao}</ModalDesc>
               <ModalDesc>
-                Serve: <span>{cardapio.porcao}</span>
+                Serve: <span>{prato.porcao}</span>
               </ModalDesc>
-              <BuyButton value={cardapio.preco} />
+              <BuyButton onClick={() => AddItem(prato)} value={prato.preco} />
             </div>
           </ModalItem>
         </div>
