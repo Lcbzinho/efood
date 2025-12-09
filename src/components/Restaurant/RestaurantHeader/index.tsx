@@ -5,11 +5,15 @@ import { useSelector } from 'react-redux'
 import type { RootState } from '../../../store/indext'
 import { useState } from 'react'
 import { CartBody } from '../../SubComponents/Cart'
-import { CartItems } from '../../SubComponents/CartItem'
+import { ItemsList } from '../../SubComponents/CartListItems'
 
 export const RestaurantHeader = () => {
-  const items = useSelector((state: RootState) => state.cart)
+  const Processos = [
+    <ItemsList />
+  ]
+  const ite = useSelector((state: RootState) => state.cart)
   const [clicked, setClicked] = useState(false)
+  const [process, setProcess] = useState(0)
 
   //Close
   const HandleClose = () => {
@@ -20,9 +24,7 @@ export const RestaurantHeader = () => {
     <Background>
       {clicked ? (
         <CartBody CloseFunction={HandleClose}>
-          {items.map((item) => (
-            <CartItems item={item} img={item.foto} price={item.preco} title={item.nome}/>
-          ))}
+          {Processos[process]}
         </CartBody>
       ): null}
       <HeaderContainer>
@@ -30,7 +32,7 @@ export const RestaurantHeader = () => {
           <Link to="/">Restaurants</Link>
         </Restaurant>
         <HeaderImg src={Logo} />
-        <Restaurant onClick={() => setClicked(!clicked)}>{items.length} Product(s) in cart</Restaurant>
+        <Restaurant onClick={() => setClicked(!clicked)}>{ite.length} Product(s) in cart</Restaurant>
       </HeaderContainer>
     </Background>
   )
