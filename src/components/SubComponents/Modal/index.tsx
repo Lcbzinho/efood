@@ -45,6 +45,8 @@ export const Modal = ({ prato, Clicked }: Props) => {
     Clicked(false)
   }
 
+  const PratoPreco = prato.preco.toLocaleString("pt-br", {style: 'currency', currency: "BRL"})
+
   return (
     <>
       <ModalContainer>
@@ -58,7 +60,7 @@ export const Modal = ({ prato, Clicked }: Props) => {
               <ModalDesc>
                 Serve: <span>{prato.porcao}</span>
               </ModalDesc>
-              <BuyButton onClick={() => Final()} value={prato.preco} />
+              <BuyButton onClick={() => Final()} value={PratoPreco} />
             </div>
           </ModalItem>
         </div>

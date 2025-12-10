@@ -19,13 +19,15 @@ export const CartItems = ({img, title, price, item}: Props) => {
         Dispatch(RemoveItem(Item))
     }
 
+    const itemPrice = price.toLocaleString("pt-br", {style: 'currency', currency: "BRL"})
+
     return (
     <CartItem>
         <CartItemContainer>
             <CartItemImage src={img} />
             <div>
                 <CartItemTitle>{title}</CartItemTitle>
-                <CartItemPrice>R$ {price}</CartItemPrice>
+                <CartItemPrice>{itemPrice}</CartItemPrice>
                 <CartItemLogo src={Logo} onClick={() => Remove(item)} />
             </div>
         </CartItemContainer>

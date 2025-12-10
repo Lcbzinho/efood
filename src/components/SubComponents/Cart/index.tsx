@@ -10,11 +10,11 @@ type Props = {
 }
 
 export const CartBody = ({children, CloseFunction}: Props) => {
-
     //Total Sum
     const TotalSum = () => {
         const items = useSelector((state: RootState) => state.cart)
-        return items.reduce((acc, item) => acc + Number(item.preco), 0)
+        const TotalPrice = items.reduce((acc, item) => acc + Number(item.preco), 0).toLocaleString("pt-br", {style: 'currency', currency: "BRL"})
+        return TotalPrice
     }
 
 
@@ -30,7 +30,7 @@ export const CartBody = ({children, CloseFunction}: Props) => {
                 <div>
                     <Total>
                         <TotalWrite>Valor Total:</TotalWrite>
-                        <TotalWrite>R$ {TotalSum()}</TotalWrite>
+                        <TotalWrite>{TotalSum()}</TotalWrite>
                     </Total>
                         <ContinueButton>Continuar</ContinueButton>
                 </div>
