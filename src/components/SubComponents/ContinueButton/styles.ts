@@ -8,7 +8,6 @@ export const Button = styled.button`
     color: ${Colors.TitleColor};
     font-size: 14px;
     font-weight: 700;
-    margin-top: 16px;
     padding: 6px 0;
     cursor: pointer;
 `

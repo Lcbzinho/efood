@@ -1,22 +1,14 @@
-import { CartCloseButton, CartCon, CartContainer, Total, TotalWrite } from "./styles"
+import { CartCloseButton, CartCon, CartContainer} from "./styles"
 import Close from '../../../assets/images/Icons/close.png'
 import { ContinueButton } from "../ContinueButton"
-import { useSelector } from "react-redux"
-import type { RootState } from "../../../store/indext"
 
 type Props = {
     children: React.ReactNode
     CloseFunction: () => void
+    NextFunction: () => void
 }
 
-export const CartBody = ({children, CloseFunction}: Props) => {
-    //Total Sum
-    const TotalSum = () => {
-        const items = useSelector((state: RootState) => state.cart)
-        const TotalPrice = items.reduce((acc, item) => acc + Number(item.preco), 0).toLocaleString("pt-br", {style: 'currency', currency: "BRL"})
-        return TotalPrice
-    }
-
+export const CartBody = ({children, CloseFunction, NextFunction}: Props) => {
 
     return (
         <CartContainer>
@@ -24,15 +16,11 @@ export const CartBody = ({children, CloseFunction}: Props) => {
                 <CartCloseButton onClick={() => CloseFunction()}><img src={Close} /></CartCloseButton>
             </div>
             <CartCon>
-                <div>
+                <div className="ContainerChildren">
                     {children}
                 </div>
-                <div>
-                    <Total>
-                        <TotalWrite>Valor Total:</TotalWrite>
-                        <TotalWrite>{TotalSum()}</TotalWrite>
-                    </Total>
-                        <ContinueButton>Continuar</ContinueButton>
+                <div className="ContinueButton">
+                        <ContinueButton onClick={NextFunction}>Continuar</ContinueButton>
                 </div>
             </CartCon>
         </CartContainer>

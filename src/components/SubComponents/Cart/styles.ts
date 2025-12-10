@@ -24,8 +24,12 @@ export const CartCon = styled.div`
     color: ${Colors.BackgroundColor};
     overflow-y: scroll; 
 
-    & > div {
+    & > .ContainerChildren {
         margin-top: 40px;
+    }
+
+    & > .ContinueButton {
+      margin-top: 8px;
     }
 `
 
@@ -36,15 +40,4 @@ export const CartCloseButton = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;
-`
-
-export const Total = styled.div`
-  color: ${Colors.BackgroundColor};
-  display: flex;
-  justify-content: space-between;
-`
-
-export const TotalWrite = styled.p`
-  font-size: 14px;
-  font-weight: 700;
 `

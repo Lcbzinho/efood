@@ -1,0 +1,39 @@
+import styled from "styled-components";
+import { Colors } from "../../../styles";
+
+export const EntregaDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    color: ${Colors.BackgroundColor};
+    font-weight: 700;
+`
+
+export const EntregaTitle = styled.h2`
+    font-size: 16px;
+    margin-bottom: 16px;
+`
+export const EntregaInfoDiv = styled.div`
+    margin-bottom: 8px;
+`
+
+export const EntregaInfoDivGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+
+`
+
+export const EntregaLabel = styled.label`
+    font-size: 14px;
+`
+
+export const EntregaInput = styled.input`
+    width: 100%;
+    background-color: ${Colors.BackgroundColor};
+    color: #4b4b4b;
+    font-weight: bold;
+    border: none;
+    padding-left: 8px;
+    height: 32px;
+    margin-top: 4px;
+`
