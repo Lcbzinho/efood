@@ -1,32 +1,33 @@
 import { Background, HeaderContainer, HeaderImg, Restaurant } from './styles'
 import Logo from '../../../assets/images/logo.png'
 import { Link } from 'react-router'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../../store/indext'
-import { useState } from 'react'
 import { CartBody } from '../../SubComponents/Cart'
 import { ItemsList } from '../../SubComponents/CartListItems'
 import { CartEntrega } from '../../SubComponents/StepsCart/Adress'
 import { PaymentCart } from '../../SubComponents/StepsCart/Payment'
+import { FinishedCart } from '../../SubComponents/StepsCart/Finished'
+import { Clicked } from '../../../store/slices/CartSlice'
 
 export const RestaurantHeader = () => {
   //Processos cart
   const Processos = [
     <ItemsList />,
     <CartEntrega />,
-    <PaymentCart />
+    <PaymentCart />,
+    <FinishedCart />
   ]
-  const ite = useSelector((state: RootState) => state.cart)
-  const [clicked, setClicked] = useState(false)
 
-  //Close
-  const HandleClose = () => {
-    setClicked(!clicked)
-  }
+  const Dispatch = useDispatch()
+
+  const ite = useSelector((state: RootState) => state.cart)
+  const wasClicked = useSelector((state: RootState) => state.cart.clicked)
+
   return (
     <Background>
-      {clicked ? (
-        <CartBody CloseFunction={HandleClose}>
+      {wasClicked ? (
+        <CartBody>
           {Processos[ite.step]}
         </CartBody>
       ): null}
@@ -35,7 +36,7 @@ export const RestaurantHeader = () => {
           <Link to="/">Restaurants</Link>
         </Restaurant>
         <HeaderImg src={Logo} />
-        <Restaurant onClick={() => setClicked(!clicked)}>{ite.items.length} Product(s) in cart</Restaurant>
+        <Restaurant onClick={() => Dispatch(Clicked())}>{ite.items.length} Product(s) in cart</Restaurant>
       </HeaderContainer>
     </Background>
   )

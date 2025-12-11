@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux'
 import {
   RestaurantCardAddButton,
   RestaurantCardDesc,
@@ -5,16 +6,17 @@ import {
   RestaurantCardImage,
   RestaurantCardTitle,
 } from './styles'
+import { Clicked } from '../../../store/slices/CartSlice'
 
 type Props = {
-  Clicked: (data: boolean, id: number) => void
   id: number
   CardImg: string
   CardTitle: string
   CardDesc: string
 }
 
-export const RestaurantCard = ({ CardDesc, CardImg, CardTitle, Clicked, id }: Props) => {
+export const RestaurantCard = ({ CardDesc, CardImg, CardTitle }: Props) => {
+  const Dispatch = useDispatch()
   return (
     <RestaurantCardDiv>
       <div>
@@ -22,7 +24,7 @@ export const RestaurantCard = ({ CardDesc, CardImg, CardTitle, Clicked, id }: Pr
         <RestaurantCardTitle>{CardTitle}</RestaurantCardTitle>
         <RestaurantCardDesc>{CardDesc}</RestaurantCardDesc>
       </div>
-      <RestaurantCardAddButton onClick={() => Clicked(true, id)}>
+      <RestaurantCardAddButton onClick={() => Dispatch(Clicked())}>
         Add to Cart
       </RestaurantCardAddButton>
     </RestaurantCardDiv>

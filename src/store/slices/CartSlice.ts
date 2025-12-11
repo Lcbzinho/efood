@@ -12,11 +12,13 @@ type Prato = {
 type CartState = {
   items: Prato[],
   step: number
+  clicked: boolean
 }
 
 const initialState: CartState = {
   items: [],
-  step: 0
+  step: 0,
+  clicked: false
 }
 const cartSlice = createSlice({
   name: 'cart',
@@ -33,9 +35,15 @@ const cartSlice = createSlice({
     },
     PrevFunction: (state) => {
       state.step -= 1
+    },
+    FinishingFunction: (state) => {
+      state.step = 0
+    },
+    Clicked: (state) => {
+      state.clicked = !state.clicked
     }
   },
 })
 
-export const { addItem, RemoveItem, NextFunction, PrevFunction } = cartSlice.actions
+export const { Clicked, FinishingFunction, addItem, RemoveItem, NextFunction, PrevFunction } = cartSlice.actions
 export default cartSlice.reducer
