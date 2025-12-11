@@ -47,7 +47,7 @@ export const PaymentCart = () => {
                         </EntregaInfoDiv>
                     </EntregaInfoDivGridMesAno>
                         <div className="buttons">
-                            <ContinueButton onClick={() => Dispatch(NextFunction())}>Finalizar Compra</ContinueButton>
+                            <ContinueButton type="submit">Finalizar Compra</ContinueButton>
                             <div className="buttons2">
                                 <ContinueButton onClick={() => Dispatch(PrevFunction())}>Voltar para o Endereço</ContinueButton>
                             </div>
