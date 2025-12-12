@@ -1,14 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { EntregaDiv, EntregaInfoDiv, EntregaInput, EntregaLabel, EntregaTitle } from '../styles'
 import { ContinueButton } from '../../ContinueButton'
-import { NextFunction, PrevFunction, SavePayment } from '../../../../store/slices/CartSlice'
+import { Finish, NextFunction, PrevFunction, ResetFunction, SavePayment } from '../../../../store/slices/CartSlice'
 import { EntregaInfoDivGrid, EntregaInfoDivGridMesAno, ErrorTooltip } from './styles'
 import { ErrorMessage, Form, Formik } from 'formik'
+import { useCreateOrderMutation } from '../../../../store/api/postapi'
 import * as Yup from 'yup'
 import type { RootState } from '../../../../store/indext'
 
 export const PaymentCart = () => {
   const Dispatch = useDispatch()
+
+  //puxando state global
+  const stateGlobal = useSelector((state:RootState) => state.cart)
+
+  //Pegando os itens do estado global, e puxando o mutate da api
+  const [createOrder] = useCreateOrderMutation()
+
   //Verification
   const EntregaSchema = Yup.object({
     Nome: Yup.string().required('Digite o nome que está no cartão'),
@@ -38,12 +46,12 @@ export const PaymentCart = () => {
       initialValues={{
         Nome: items?.name ?? '',
         Numero: items?.number ?? '',
-        CVV: items?.code ?? '',
-        Mes: items?.expires.month ?? '',
-        Ano: items?.expires.year ?? '',
+        CVV: '',
+        Mes: '',
+        Ano: '',
       }}
       validationSchema={EntregaSchema}
-      onSubmit={(value) => {
+      onSubmit={ async (value) => {
         const Payload = {
           card: {
             name: value.Nome,
@@ -56,7 +64,40 @@ export const PaymentCart = () => {
           },
         }
         Dispatch(SavePayment(Payload))
-        Dispatch(NextFunction())
+        Dispatch(Finish())
+        const safeOrderData = {
+          delivery: {
+            receiver: stateGlobal.delivery?.receiver || "",
+            address: {
+              description: stateGlobal.delivery?.address.description || "",
+              city: stateGlobal.delivery?.address.city || "",
+              zipCode: stateGlobal.delivery?.address.zipCode || "",
+              number: Number(stateGlobal.delivery?.address.number) || 0,
+              complement: stateGlobal.delivery?.address.complement || ""
+            }
+          },
+          payment: {
+            card: {
+              name: stateGlobal.payment?.card.name || "",
+              number: stateGlobal.payment.card.number || "",
+              code: stateGlobal.payment.card.code || "",
+              expires: {
+                month: stateGlobal.payment.card.expires.month || "",
+                year: stateGlobal.payment.card.expires.year || ""
+              }
+            }
+          }
+        }
+        try {
+          const result = await createOrder(safeOrderData).unwrap()
+          console.log("ORDER RESULT", result)
+
+          Dispatch(ResetFunction())
+          Dispatch(NextFunction())
+        } catch (err){
+          console.error(err)
+          alert("Falha ao completar o pedido")
+        }
       }}
     >
       <Form>

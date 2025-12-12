@@ -1,13 +1,12 @@
 import { useDispatch } from 'react-redux'
 import { ContinueButton } from '../../ContinueButton'
 import { FinishedCardDesc, FinishedCartTitle } from './styles'
-import { Clicked, FinishingFunction } from '../../../../store/slices/CartSlice'
+import { Clicked } from '../../../../store/slices/CartSlice'
 
 export const FinishedCart = () => {
   const Dispatch = useDispatch()
 
   const Finished = () => {
-    Dispatch(FinishingFunction())
     Dispatch(Clicked())
   }
 

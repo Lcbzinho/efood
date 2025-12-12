@@ -24,6 +24,7 @@ type Delivery = {
 
 type Payment = {
   card: {
+    name: string
     number: string
     code: number
     expires: {
@@ -33,19 +34,48 @@ type Payment = {
   }
 }
 
+type Finish = {
+  products: object[]
+  delivery: Delivery
+  payment: Payment
+}
+
 type CartState = {
   items: Prato[]
   step: number
   clicked: boolean
-  delivery: Delivery | null
-  payment: Payment | null
+  delivery: Delivery
+  payment: Payment
+  finish: Finish | null
 }
 const initialState: CartState = {
   items: [],
   step: 0,
   clicked: false,
-  delivery: null,
-  payment: null,
+  delivery: {
+    receiver: "",
+    address: {
+      description: "",
+      city: "",
+      zipCode: "",
+      number: 0,
+      complement: ""
+    }
+  },
+
+  payment: {
+    card: {
+      name: "",
+      number: "",
+      code: 0,
+      expires: {
+        month: 0,
+        year: 0
+      }
+    }
+  },
+
+  finish: null
 }
 const cartSlice = createSlice({
   name: 'cart',
@@ -63,9 +93,28 @@ const cartSlice = createSlice({
     PrevFunction: (state) => {
       state.step -= 1
     },
-    FinishingFunction: (state) => {
-      state.delivery = null
-      state.payment = null
+    ResetFunction: (state) => {
+      state.delivery = {
+        receiver: "",
+        address: {
+          description: "",
+          city: "",
+          zipCode: "",
+          number: 0,
+          complement: ""
+        }
+      }
+      state.payment = {
+        card: {
+          name: "",
+          number: "",
+          code: 0,
+          expires: {
+            month: 0,
+            year: 0
+          }
+        }
+      }
       state.items = []
       state.step = 0
     },
@@ -78,17 +127,32 @@ const cartSlice = createSlice({
     SavePayment: (state, action: PayloadAction<Payment>) => {
       state.payment = action.payload
     },
+    Finish:  (state) => {
+      if(state.delivery === null || state.payment === null) return
+      const itens = state.items.map((item) => ({
+        id: item.id,
+        price: item.preco
+      }))
+
+      state.finish = {
+        products: itens,
+        delivery: state.delivery,
+        payment: state.payment
+      }
+
+    }
   },
 })
 
 export const {
   Clicked,
-  FinishingFunction,
+  ResetFunction,
   addItem,
   RemoveItem,
   NextFunction,
   PrevFunction,
   SaveDelivery,
   SavePayment,
+  Finish
 } = cartSlice.actions
 export default cartSlice.reducer
