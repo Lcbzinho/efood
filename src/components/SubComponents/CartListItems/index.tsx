@@ -7,16 +7,23 @@ import { NextFunction } from "../../../store/slices/CartSlice";
 
 
 
-export const ItemsList = () => 
+export const ItemsList = () =>
     {
     const Dispatch = useDispatch()
 
     //Receving items from global cart state
     const items = useSelector((state: RootState) => state.cart.items)
 
+    //verify empty cart
+    const verifyCart = () => {
+        if (items.length === 0) {
+            return alert("Voce nao pode continuar com o carrinho vazio")
+        }
+        return Dispatch(NextFunction())
+    }
+
     //Total Sum
-    const item = useSelector((state: RootState) => state.cart.items)
-    const TotalPrice = item.reduce((acc, item) => acc + Number(item.preco), 0).toLocaleString("pt-br", {style: 'currency', currency: "BRL"})
+    const TotalPrice = items.reduce((acc, item) => acc + Number(item.preco), 0).toLocaleString("pt-br", {style: 'currency', currency: "BRL"})
 
     return (
         <>
@@ -30,7 +37,7 @@ export const ItemsList = () =>
                 <TotalWrite>Valor Total:</TotalWrite>
                 <TotalWrite>{TotalPrice}</TotalWrite>
             </Total>
-            <ContinueButton onClick={() => Dispatch(NextFunction())}>Continuar para a Entrega</ContinueButton>
+            <ContinueButton onClick={() => verifyCart()}>Continuar para a Entrega</ContinueButton>
             </>
         )
 }

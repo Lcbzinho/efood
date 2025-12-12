@@ -80,12 +80,12 @@ export const CartEntrega = () => {
           <EntregaInfoDivGrid>
             <EntregaInfoDiv>
               <EntregaLabel>CEP</EntregaLabel>
-              <EntregaInput name="CEP" placeholder="CEP" />
+              <EntregaInput inputMode="numeric" pattern="[0-9]*" name="CEP" placeholder="CEP" />
               <ErrorMessage name="CEP" render={(msn) => <ErrorTooltip>{msn}</ErrorTooltip>} />
             </EntregaInfoDiv>
             <EntregaInfoDiv>
               <EntregaLabel>Número</EntregaLabel>
-              <EntregaInput name="Numero" placeholder="Número" />
+              <EntregaInput inputMode="numeric" pattern="[0-9]*" name="Numero" placeholder="Número" />
               <ErrorMessage name="Numero" render={(msn) => <ErrorTooltip>{msn}</ErrorTooltip>} />
             </EntregaInfoDiv>
           </EntregaInfoDivGrid>

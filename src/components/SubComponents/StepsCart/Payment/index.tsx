@@ -65,7 +65,6 @@ export const PaymentCart = () => {
         try {
           const finished = store.getState().cart.finish
           const result = await createOrder(finished).unwrap()
-          console.log(result.orderId)
           Dispatch(AttOrderId(result.orderId))
           Dispatch(NextFunction())
           Dispatch(ResetFunction())

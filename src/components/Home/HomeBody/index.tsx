@@ -13,6 +13,7 @@ export const Body = () => {
           {data?.map((RestaurantItem) => {
             return (
               <Card
+                key={RestaurantItem.id}
                 image={RestaurantItem.capa}
                 title={RestaurantItem.titulo}
                 rating={RestaurantItem.avaliacao}
